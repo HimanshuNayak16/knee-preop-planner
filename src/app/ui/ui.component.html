@@ -1,0 +1,31 @@
+<div class="col-s-4 col-m-4 col-2 bg-info" id="ui-container">
+  <mat-radio-group
+    aria-labelledby="compartments-radio-group-label"
+    class="compartments-radio-group"
+    [(ngModel)]="selectedCompartment"
+  >
+    @for (compartment of compartments; track compartment.id) {
+    <div #radioDiv>
+      <mat-radio-button
+        class="compartment-radio-button"
+        [value]="compartment"
+        (change)="radioChange($event)"
+        >{{ compartment.name }}</mat-radio-button
+      >
+    </div>
+
+    }
+  </mat-radio-group>
+  <div class="bg-warning mx-2 my-2">
+    <span>{{ landmarksRemaining }} landmarks remaining.</span>
+  </div>
+  @if (landmarksRemaining === 0) {
+  <button
+    type="button"
+    class="btn btn-lg btn-block btn-outline-primary mx-4"
+    (click)="axisLineCreation()"
+  >
+    Create Axis Lines
+  </button>
+  }
+</div>
